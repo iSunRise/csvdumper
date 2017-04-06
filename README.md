@@ -26,6 +26,11 @@ Perform migrations:
 
 Dump csv file (it expects `data_dump.csv` to be in root directory of project)
 
+    $ rake csvdumper:process
+
+Or, manually specify file path (relative) and bulk size:
+
+    $ rake csvdumper:process_file[myfile.csv,1000]
 
 ## License
 
