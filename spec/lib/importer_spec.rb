@@ -16,6 +16,7 @@ module Csvdumper
       allow(Csvdumper::IpLocation).to receive(:new) { |args| OpenStruct.new(args.merge(valid?: true)) }
       allow(ActiveRecord::Base).to receive(:transaction).and_yield
       allow(Csvdumper::IpLocation).to receive(:import)
+      allow(ProgressBar).to receive(:create).and_return(OpenStruct.new(increment: true))
     end
 
     describe 'progress bar' do
@@ -60,7 +61,6 @@ module Csvdumper
         valid_entries_in_csv = 5 # actually 4 but we don't validate in this case
         expect(statistic[:saved_records]).to eq(valid_entries_in_csv)
       end
-
     end
   end
 end
